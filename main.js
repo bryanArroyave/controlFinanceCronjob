@@ -1,4 +1,14 @@
 require("dotenv").config();
+
+// log all env variables
+
+console.log("NOTION_TOKEN", process.env.NOTION_TOKEN);
+console.log("FIXED_EXPENSES_DB_ID", process.env.FIXED_EXPENSES_DB_ID);
+console.log("FIXED_INCOMES_DB_ID", process.env.FIXED_INCOMES_DB_ID);
+console.log("MOVEMENTS_DB_ID", process.env.MOVEMENTS_DB_ID);
+console.log("MONTHS_DB_ID", process.env.MONTHS_DB_ID);
+console.log("ACCOUNTS_DB_ID", process.env.ACCOUNTS_DB_ID);
+
 const { Client } = require("@notionhq/client");
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const dayjs = require("dayjs");
@@ -7,7 +17,6 @@ const FIXED_EXPENSES_DB_ID = process.env.FIXED_EXPENSES_DB_ID;
 const FIXED_INCOMES_DB_ID = process.env.FIXED_INCOMES_DB_ID;
 const MOVEMENTS_DB_ID = process.env.MOVEMENTS_DB_ID;
 const MONTHS_DB_ID = process.env.MONTHS_DB_ID;
-const ACCOUNTS_DB_ID = process.env.ACCOUNTS_DB_ID;
 
 const months = {
   January: "Enero",
@@ -38,7 +47,6 @@ const getFixedTxs = async (databaseId, now) => {
     },
   });
 };
-
 
 const getMonthOrCreate = async (month) => {
   const response = await notion.databases.query({
@@ -122,16 +130,6 @@ const createMovement = async ({
 };
 
 (async () => {
-
-  // log all env variables
-
-  console.log(process.env.NOTION_TOKEN);
-  console.log(process.env.FIXED_EXPENSES_DB_ID);
-  console.log(process.env.FIXED_INCOMES_DB_ID);
-  console.log(process.env.MOVEMENTS_DB_ID);
-  console.log(process.env.MONTHS_DB_ID);
-  console.log(process.env.ACCOUNTS_DB_ID);
-
   const now = dayjs();
   const currentMonth = now.format("YYYY-MM");
 
