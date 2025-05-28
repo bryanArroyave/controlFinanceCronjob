@@ -122,6 +122,16 @@ const createMovement = async ({
 };
 
 (async () => {
+
+  // log all env variables
+
+  console.log(process.env.NOTION_TOKEN);
+  console.log(process.env.FIXED_EXPENSES_DB_ID);
+  console.log(process.env.FIXED_INCOMES_DB_ID);
+  console.log(process.env.MOVEMENTS_DB_ID);
+  console.log(process.env.MONTHS_DB_ID);
+  console.log(process.env.ACCOUNTS_DB_ID);
+
   const now = dayjs();
   const currentMonth = now.format("YYYY-MM");
 
