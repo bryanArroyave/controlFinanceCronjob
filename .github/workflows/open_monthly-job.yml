@@ -1,0 +1,25 @@
+name: Copy Fixed  Monthly
+
+on:
+  schedule:
+    # - cron: '0 8 1 * *' # Ejecuta el día 1 de cada mes a las 8am UTC
+    - cron: '*/1 * * * *' # Ejecuta cada minuto
+  workflow_dispatch: # Permite ejecutarlo manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: node main.js
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          FIXED_EXPENSES_DB_ID: ${{ secrets.FIXED_EXPENSES_DB_ID }}
+          FIXED_INCOMES_DB_ID: ${{ secrets.FIXED_INCOMES_DB_ID }}
+          MOVEMENTS_DB_ID: ${{ secrets.MOVEMENTS_DB_ID }}
+          MONTHS_DB_ID: ${{ secrets.MONTHS_DB_ID }}
+          ACCOUNTS_DB_ID: ${{ secrets.ACCOUNTS_DB_ID }} 
