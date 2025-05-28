@@ -2,8 +2,7 @@ name: Copy Fixed  Monthly
 
 on:
   schedule:
-    # - cron: '0 8 1 * *' # Ejecuta el día 1 de cada mes a las 8am UTC
-    - cron: '*/6 * * * *' # Ejecuta cada minuto
+    - cron: '0 8 1 * *' # Ejecuta el día 1 de cada mes a las 8am UTC
   workflow_dispatch: # Permite ejecutarlo manualmente
 
 jobs:
